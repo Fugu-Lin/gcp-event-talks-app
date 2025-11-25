@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Talks Today</title>
+  <style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+main {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-container {
+  margin-bottom: 1rem;
+}
+
+#search {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.schedule-container {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.talk {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.talk:last-child {
+  border-bottom: none;
+}
+
+.talk-time {
+  font-weight: bold;
+  color: #333;
+}
+
+.talk-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.talk-speakers {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.talk-category {
+  margin-bottom: 0.5rem;
+}
+
+.talk-category span {
+  display: inline-block;
+  background-color: #eee;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.break {
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  color: #666;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tech Talks Today</h1>
+    <p>A one-day event filled with technical talks.</p>
+  </header>
+  <main>
+    <div class="search-container">
+      <input type="text" id="search" placeholder="Search by category...">
+    </div>
+    <div id="schedule" class="schedule-container"></div>
+  </main>
+  <footer>
+    <p>&copy; 2025 Tech Talks Today</p>
+  </footer>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const scheduleContainer = document.getElementById('schedule');
+  const searchInput = document.getElementById('search');
+  const talks = [
+  {
+    "title": "The Future of JavaScript Frameworks",
+    "speakers": ["Jane Doe"],
+    "category": ["JavaScript", "Web Development"],
+    "duration": 60,
+    "description": "A deep dive into the latest trends and predictions for the future of front-end frameworks."
+  },
+  {
+    "title": "Building Scalable APIs with GraphQL",
+    "speakers": ["John Smith"],
+    "category": ["API", "GraphQL", "Backend"],
+    "duration": 60,
+    "description": "Learn how to design and build robust and scalable APIs using GraphQL."
+  },
+  {
+    "title": "AI-Powered User Experiences",
+    "speakers": ["Emily White", "David Green"],
+    "category": ["AI", "UX", "Machine Learning"],
+    "duration": 60,
+    "description": "Discover how to leverage AI and Machine Learning to create personalized and intelligent user experiences."
+  },
+  {
+    "title": "Cybersecurity in a Cloud-Native World",
+    "speakers": ["Michael Black"],
+    "category": ["Cybersecurity", "Cloud", "DevSecOps"],
+    "duration": 60,
+    "description": "An overview of the security challenges and best practices for securing cloud-native applications."
+  },
+  {
+    "title": "The Rise of WebAssembly",
+    "speakers": ["Chris Brown"],
+    "category": ["WebAssembly", "Performance", "Web Development"],
+    "duration": 60,
+    "description": "Explore the potential of WebAssembly to revolutionize web development and unlock near-native performance in the browser."
+  },
+  {
+    "title": "Quantum Computing: A Developer's Introduction",
+    "speakers": ["Sarah Jones"],
+    "category": ["Quantum Computing", "Future Tech"],
+    "duration": 60,
+    "description": "A gentle introduction to the world of quantum computing and how developers can start preparing for the future of computation."
+  }
+];
+
+  const renderTalks = (filteredTalks) => {
+    scheduleContainer.innerHTML = '';
+    let currentTime = new Date();
+    currentTime.setHours(10, 0, 0, 0);
+
+    filteredTalks.forEach((talk, index) => {
+      const startTime = new Date(currentTime);
+      const endTime = new Date(startTime.getTime() + talk.duration * 60000);
+
+      const talkElement = document.createElement('div');
+      talkElement.classList.add('talk');
+
+      const timeString = `${startTime.toTimeString().slice(0, 5)} - ${endTime.toTimeString().slice(0, 5)}`;
+      const speakersString = talk.speakers.join(', ');
+      const categoryString = talk.category.map(cat => `<span>${cat}</span>`).join(' ');
+
+      talkElement.innerHTML = `
+        <div class="talk-time">${timeString}</div>
+        <div class="talk-title">${talk.title}</div>
+        <div class="talk-speakers">${speakersString}</div>
+        <div class="talk-category">${categoryString}</div>
+        <div class="talk-description">${talk.description}</div>
+      `;
+      scheduleContainer.appendChild(talkElement);
+
+      currentTime = new Date(endTime.getTime() + 10 * 60000); // 10-minute break
+
+      if (index === 2) { // Lunch break after the 3rd talk
+        const lunchStartTime = new Date(currentTime);
+        const lunchEndTime = new Date(lunchStartTime.getTime() + 60 * 60000);
+        const lunchElement = document.createElement('div');
+        lunchElement.classList.add('break');
+        lunchElement.textContent = `Lunch Break (${lunchStartTime.toTimeString().slice(0, 5)} - ${lunchEndTime.toTimeString().slice(0, 5)})`;
+        scheduleContainer.appendChild(lunchElement);
+        currentTime = lunchEndTime;
+      }
+    });
+  };
+
+  renderTalks(talks);
+
+  searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredTalks = talks.filter(talk => {
+      return talk.category.some(cat => cat.toLowerCase().includes(searchTerm));
+    });
+    renderTalks(filteredTalks);
+  });
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+
+[
+  {
+    "title": "The Future of JavaScript Frameworks",
+    "speakers": ["Jane Doe"],
+    "category": ["JavaScript", "Web Development"],
+    "duration": 60,
+    "description": "A deep dive into the latest trends and predictions for the future of front-end frameworks."
+  },
+  {
+    "title": "Building Scalable APIs with GraphQL",
+    "speakers": ["John Smith"],
+    "category": ["API", "GraphQL", "Backend"],
+    "duration": 60,
+    "description": "Learn how to design and build robust and scalable APIs using GraphQL."
+  },
+  {
+    "title": "AI-Powered User Experiences",
+    "speakers": ["Emily White", "David Green"],
+    "category": ["AI", "UX", "Machine Learning"],
+    "duration": 60,
+    "description": "Discover how to leverage AI and Machine Learning to create personalized and intelligent user experiences."
+  },
+  {
+    "title": "Cybersecurity in a Cloud-Native World",
+    "speakers": ["Michael Black"],
+    "category": ["Cybersecurity", "Cloud", "DevSecOps"],
+    "duration": 60,
+    "description": "An overview of the security challenges and best practices for securing cloud-native applications."
+  },
+  {
+    "title": "The Rise of WebAssembly",
+    "speakers": ["Chris Brown"],
+    "category": ["WebAssembly", "Performance", "Web Development"],
+    "duration": 60,
+    "description": "Explore the potential of WebAssembly to revolutionize web development and unlock near-native performance in the browser."
+  },
+  {
+    "title": "Quantum Computing: A Developer's Introduction",
+    "speakers": ["Sarah Jones"],
+    "category": ["Quantum Computing", "Future Tech"],
+    "duration": 60,
+    "description": "A gentle introduction to the world of quantum computing and how developers can start preparing for the future of computation."
+  }
+]
